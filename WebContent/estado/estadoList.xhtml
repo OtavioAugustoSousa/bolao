@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   
+<ui:composition template="/template/template.xhtml">
+
+	<ui:define name="message">
+		<p:messages id="messages" closable="true">
+        	<p:autoUpdate />
+    	</p:messages>
+	</ui:define>
+	
+	<ui:define name="title"><h:outputText value="#{msg['estado.list.title']}" /></ui:define>
+	
+	<ui:define name="content">
+		
+		<h:form prependId="false">
+			<p:dataTable id="dataTableEstado" var="estado" value="#{estadoBean.estados}">
+			 
+			    <p:column headerText="#{msg['label.estado.nome']}">
+			        <h:outputText value="#{estado.nome}" />
+			    </p:column>
+			 
+			    <p:column headerText="#{msg['label.estado.sigla']}">
+			        <h:outputText value="#{estado.sigla}" />
+			    </p:column>
+			    
+			    <p:column headerText="#{msg['label.editar']}" style="width: 50px;text-align: center;">
+			    	<p:commandButton icon="ui-icon-tag" action="#{estadoBean.prepararEditar}" >
+			        	<f:setPropertyActionListener value="#{estado}" target="#{estadoBean.estado}" />
+			        </p:commandButton>
+			    </p:column>
+			    
+			    <div style="text-align: center;" />
+			    
+			  	<p:column headerText="#{msg['label.editar']}" style="width: 50px;text-align: center;">
+			  		<p:commandButton icon="ui-icon-trash" onclick="PF('confirmarExclusao').show();" >
+			        	<f:setPropertyActionListener value="#{estado}" target="#{estadoBean.estado}" />
+			  		</p:commandButton>
+			    </p:column>
+			</p:dataTable>	
+			
+			<br />
+			<p:commandButton value="#{msg['label.novo']}" action="#{estadoBean.prepararInserir}" />
+		</h:form>
+		
+		<p:dialog header="#{msg['header.confirma.exclusao']}" widgetVar="confirmarExclusao" showEffect="explode" hideEffect="explode" height="100">
+	    	<h:outputText value="#{msg['outputText.confirma.exclusao']}" /><br /><br />
+	    	<h:form>
+	    		<p:commandButton value="#{msg['label.sim']}" update="messages dataTableEstado" action="#{estadoBean.excluir}" onclick="PF('confirmarExclusao').hide();"/>
+	    		<p:commandButton value="#{msg['label.nao']}" onclick="PF('confirmarExclusao').hide();" />
+	    	</h:form>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+</html>
