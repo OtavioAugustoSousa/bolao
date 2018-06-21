@@ -14,7 +14,7 @@ public class Usuario implements Serializable{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private String id;
 	
 	private String login;
 	
@@ -36,11 +36,11 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 }

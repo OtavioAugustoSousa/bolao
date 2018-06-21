@@ -10,54 +10,53 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.core.env.Environment;
 
-import br.com.appmodelo.model.entity.Cliente;
-import br.com.appmodelo.model.service.ClienteService;
+import br.com.appmodelo.model.entity.Rodada;
 
 @ManagedBean
 @SessionScoped
-public class ClienteBean {
+public class RodadaBean {
 
-	@ManagedProperty("#{clienteService}")
-	private ClienteService clienteService;
+	//@ManagedProperty("#{rodadaService}")
+	//private ClienteService rodadaService;
 
 	@ManagedProperty("#{environment}")
 	private Environment environment;
 
-	private Cliente cliente;
+	private Rodada rodada;
 
-	private List<Cliente> clientes;
+	private List<Rodada> rodadas;
 
-	public void setClienteService(ClienteService clienteService) {
-		this.clienteService = clienteService;
-	}
+/*	public void setRodadaService(RodadaService rodadaService) {
+		this.rodadaService = rodadaService;
+	}*/
 
 	public void setEnvironment(Environment environment) {
 		this.environment = environment;
 	}
 
 	public String listar() {
-		clientes = clienteService.buscarTodos();
-		return "/cliente/clienteList";
+		//rodadas = rodadaService.buscarTodos();
+		return "/rodada/rodadaList";
 	}
 
 	public String prepararInserir() {
-		cliente = new Cliente();
-		return "/cliente/clienteForm";
+		rodada = new Rodada();
+		return "/rodada/rodadaForm";
 	}
 
 	public String prepararEditar() {
-		cliente = clienteService.buscarPorId(cliente.getId());
-		return "/cliente/clienteForm";
+		//rodada = rodadaService.buscarPorId(rodada.getId());
+		return "/rodada/rodadaForm";
 	}
 
 	public String salvar() {
-		clienteService.salvar(cliente);
+		//rodadaService.salvar(rodada);
 		adicionarMenssagemSalvoSucesso();
 		return listar();
 	}
 
 	public String excluir() {
-		clienteService.excluir(cliente);
+		//rodadaService.excluir(rodada);
 		adicionarMenssagemExcluidoSalvoSucesso();
 		return listar();
 	}
@@ -74,20 +73,20 @@ public class ClienteBean {
 		context.addMessage(null, new FacesMessage(mensagem));
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
+	public List<Rodada> getRodadas() {
+		return rodadas;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setRodadas(List<Rodada> rodadas) {
+		this.rodadas = rodadas;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Rodada getRodada() {
+		return rodada;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setRodada(Rodada rodada) {
+		this.rodada = rodada;
 	}
 
 }

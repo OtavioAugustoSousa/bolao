@@ -1,0 +1,39 @@
+html,body{
+	height: 100%;	
+}
+body {
+	background-image: url('campo.jpg.xhtml');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.center {
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.form-card {
+	border-radius: 5px;
+	background: #fff;
+	padding: 15px;
+	-webkit-box-shadow: 0px 4px 32px 6px rgba(0, 0, 0, 0.34);
+	-moz-box-shadow: 0px 4px 32px 6px rgba(0, 0, 0, 0.34);
+	box-shadow: 0px 4px 32px 6px rgba(0, 0, 0, 0.34);
+}
+
+.button-group {
+	margin: 15px;
+}
+
+.button-group button {
+	margin: 10px;
+}
+
+#basic{
+	position: relative;
+	top: 50px;
+}

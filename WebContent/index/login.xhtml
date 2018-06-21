@@ -1,31 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"      
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-      
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 <h:head>
 	<title><h:outputText value="#{msg['head.title']}" /></title>
+	<h:outputStylesheet name="style.css" />
 </h:head>
 
 <h:body>
-	<h3 class="title"><h:outputText value="#{msg['login.title']}" /></h3>
+	<div class="ui-g">
+		<div class="ui-g-12">
+			<div class="center">
+				<p:graphicImage name="bolao_dos_amigos.png" width="20%" class="logo"/>
+			</div>
+		</div>
+	</div>
+	<div class="ui-g">
+		<div class="form-card center">
+			<h3 class="title center">
+				<h:outputText value="#{msg['login.title']}" />
+			</h3>
+			<h:form>
+				<p:growl id="growl" autoUpdate="true" sticky="true" />
 
-	<h:form>
-		<p:growl id="growl" autoUpdate="true" sticky="true" /> 
-		
-		<h:panelGrid columns="2">
-			<p:outputLabel value="#{msg['label.usuario']}" />		
-			<p:inputText value="#{loginBean.login}" />
-			
-			<p:outputLabel value="#{msg['label.senha']}" />
-			<p:password value="#{loginBean.senha}" />
-			
-  			<p:commandButton value="#{msg['label.login']}" action="#{loginBean.login}" />
-		</h:panelGrid>
-		
-	</h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="#{msg['label.usuario']}" />
+					<p:inputText value="#{loginBean.login}" />
+
+					<p:outputLabel value="#{msg['label.senha']}" />
+					<p:password value="#{loginBean.senha}" />
+				</h:panelGrid>
+					<div class="button-group">
+					<p:commandButton value="#{msg['label.login']}"
+						action="#{loginBean.login}" styleClass="ui-priority-primary" />
+					
+					<p:commandButton value="#{msg['label.cadastrar']}"
+						action="#{loginBean.login}" />
+					
+					</div>
+					
+			</h:form>
+
+		</div>
+	</div>
+
 
 </h:body>
 </html>
