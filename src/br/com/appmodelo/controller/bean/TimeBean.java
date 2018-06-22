@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.com.appmodelo.model.entity.Time;
+import br.com.appmodelo.model.entity.Usuario;
 
 @ManagedBean
 @SessionScoped
@@ -32,6 +33,10 @@ public class TimeBean {
 	}
 	
 	public String novo() {
+		return "/time/timeForm";
+	}
+	
+	public String prepararEditar() {
 		return "/time/timeForm";
 	}
 
