@@ -27,7 +27,11 @@ public class TimeBean {
 		return "/time/timeList";
 	}
 
-	public String slavar() {
+	public String salvar() {
+		return "/time/timeForm";
+	}
+	
+	public String novo() {
 		return "/time/timeForm";
 	}
 

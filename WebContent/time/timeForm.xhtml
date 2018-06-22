@@ -1,33 +1,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"      
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-   
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 <ui:composition template="/template/template.xhtml">
 
-	<ui:define name="title"><h:outputText value="#{msg['time.form.title']}" /></ui:define>
-	
+	<ui:define name="title">
+		<div class="center">
+			<h:outputText value="#{msg['time.form.title']}" />
+		</div>
+	</ui:define>
 	<ui:define name="content">
+		<div class="form-cadastrar center">
+			<h:form>
+				<h:panelGrid id="gridEstado" columns="3">
+					<p:outputLabel value="#{msg['label.nome']}" />
+					<p:inputText id="inputNome" value="#{timeBean.time.nome}"
+						required="true" maxlength="60" />
+					<p:message for="inputNome" />
 
-		<h:form>
-			<h:panelGrid id="gridEstado" columns="3">
-				<p:outputLabel value="#{msg['label.time.nome']}" />		
-				<p:inputText id="inputNome" value="#{timeBean.time.nome}" required="true" maxlength="60" />
-				<p:message for="inputNome" />
-				
-				<p:outputLabel value="#{msg['label.time.sigla']}" />
-				<p:inputText id="inputSigla" value="#{timeBean.time.estado}" required="true" maxlength="2" />
-				<p:message for="inputSigla" />
-				
-			</h:panelGrid>
-			
-			<br />
-			<p:commandButton value="#{msg['label.voltar']}" action="#{timeBean.listar}" immediate="true" />
-			<p:commandButton value="#{msg['label.salvar']}" action="#{timeBean.salvar}" update="gridEstado" />
-		</h:form>
-			
+					<p:outputLabel value="#{msg['label.estado']}" />
+					<p:inputText id="inputSigla" value="#{timeBean.time.estado}"
+						required="true" maxlength="2" />
+					<p:message for="inputSigla" />
+
+				</h:panelGrid>
+
+				<br />
+				<p:commandButton value="#{msg['label.voltar']}"
+					action="#{timeBean.listar}" immediate="true" />
+				<p:commandButton value="#{msg['label.salvar']}"
+					action="#{timeBean.salvar}" update="gridEstado" />
+			</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>
