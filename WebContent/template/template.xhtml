@@ -1,37 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">      
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<h:head>
-		<title><h:outputText value="#{msg['head.title']}" /></title>
-		<h:outputStylesheet name="style.css" />
-	</h:head>
-	
-    <h:body>
-    	<f:loadBundle basename="messages" var="msg"/>
-		<h:form>  
-		    <p:menubar>
-		        <p:submenu label="#{msg['label.cadastro']}" icon="ui-icon-document">
-		            <p:menuitem value="#{msg['label.rodada']}" action="#{rodadaBean.listar}" icon="ui-icon-plus" />
-		            <p:menuitem value="#{msg['label.time']}" action="#{timeBean.listar}" icon="ui-icon-plus" />
-		            <p:menuitem value="#{msg['label.jogador']}" action="#{jogadorBean.listar}" icon="ui-icon-plus" />
-		        </p:submenu>
-		        <p:menuitem value="#{msg['label.sair']}" url="/index/login.xhtml" icon="ui-icon-close" />
-		    </p:menubar>
-		</h:form>
-		
-		<p:fieldset id="basic" >
-			<div class="row">
-				<ui:insert name="message" />
-				<h4 class="title"><ui:insert name="title" /></h4>
-            	<ui:insert name="content" />
-        	</div>
-        
-        </p:fieldset>
-	</h:body>
+<h:head>
+	<title><h:outputText value="#{msg['head.title']}" /></title>
+	<h:outputStylesheet name="style.css" />
+</h:head>
+
+<h:body>
+	<div class="ui-g top-bar">
+		<div class="ui-g-2"></div>
+		<div class="ui-g-1">
+			<div class="center">
+				<p:graphicImage name="bolao_dos_amigos.png" width="100%"
+					class="logo" />
+			</div>
+		</div>
+		<div class="ui-g-6">
+			<h:form>
+				<p:tabMenu activeIndex="#{param.i}">
+					<p:menuitem value="#{msg['label.rodada']}"
+						action="#{rodadaBean.listar}">
+						<f:param name="i" value="0" />
+					</p:menuitem>
+					<p:menuitem value="#{msg['label.time']}"
+						action="#{timeBean.listar}">
+						<f:param name="i" value="1" />
+					</p:menuitem>
+					<p:menuitem value="#{msg['label.sair']}" url="/index/login.xhtml">
+						<f:param name="i" value="2" />
+					</p:menuitem>
+
+				</p:tabMenu>
+			</h:form>
+		</div>
+	</div>
+	<f:loadBundle basename="messages" var="msg" />
+
+	<div class="ui-g">
+		<div class="ui-g-2"></div>
+		<div class="ui-g-8 p-0">
+			<p:fieldset id="basic">
+				<div class="row">
+					<ui:insert name="message" />
+					<h4 class="title">
+						<ui:insert name="title" />
+					</h4>
+
+					<ui:insert name="content" />
+				</div>
+			</p:fieldset>
+		</div>
+	</div>
+</h:body>
 
 </html>

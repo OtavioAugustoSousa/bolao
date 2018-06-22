@@ -10,56 +10,33 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.core.env.Environment;
 
-import br.com.appmodelo.model.entity.Cliente;
-import br.com.appmodelo.model.service.ClienteService;
+import br.com.appmodelo.model.entity.Usuario;
 
 @ManagedBean
 @SessionScoped
 public class JogadorBean {
 
-	@ManagedProperty("#{clienteService}")
-	private ClienteService clienteService;
-
 	@ManagedProperty("#{environment}")
 	private Environment environment;
 
-	private Cliente cliente;
+	private Usuario jogador = new Usuario();
 
-	private List<Cliente> clientes;
-
-	public void setClienteService(ClienteService clienteService) {
-		this.clienteService = clienteService;
-	}
+	private List<Usuario> clientes;
 
 	public void setEnvironment(Environment environment) {
 		this.environment = environment;
 	}
 
-	public String listar() {
-		clientes = clienteService.buscarTodos();
-		return "/cliente/clienteList";
-	}
-
-	public String prepararInserir() {
-		cliente = new Cliente();
-		return "/cliente/clienteForm";
-	}
-
-	public String prepararEditar() {
-		cliente = clienteService.buscarPorId(cliente.getId());
-		return "/cliente/clienteForm";
-	}
-
 	public String salvar() {
-		clienteService.salvar(cliente);
-		adicionarMenssagemSalvoSucesso();
-		return listar();
+		return "/index/login";
 	}
 
-	public String excluir() {
-		clienteService.excluir(cliente);
-		adicionarMenssagemExcluidoSalvoSucesso();
-		return listar();
+	public Usuario getJogador() {
+		return jogador;
+	}
+
+	public void setJogador(Usuario jogador) {
+		this.jogador = jogador;
 	}
 
 	private void adicionarMenssagemSalvoSucesso() {
@@ -72,22 +49,6 @@ public class JogadorBean {
 		String mensagem = environment.getProperty("messagem.registro.excluido");
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage(mensagem));
-	}
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 }

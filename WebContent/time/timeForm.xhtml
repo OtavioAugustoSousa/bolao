@@ -7,25 +7,25 @@
    
 <ui:composition template="/template/template.xhtml">
 
-	<ui:define name="title"><h:outputText value="#{msg['estado.form.title']}" /></ui:define>
+	<ui:define name="title"><h:outputText value="#{msg['time.form.title']}" /></ui:define>
 	
 	<ui:define name="content">
 
 		<h:form>
 			<h:panelGrid id="gridEstado" columns="3">
-				<p:outputLabel value="#{msg['label.estado.nome']}" />		
-				<p:inputText id="inputNome" value="#{estadoBean.estado.nome}" required="true" maxlength="60" />
+				<p:outputLabel value="#{msg['label.time.nome']}" />		
+				<p:inputText id="inputNome" value="#{timeBean.time.nome}" required="true" maxlength="60" />
 				<p:message for="inputNome" />
 				
-				<p:outputLabel value="#{msg['label.estado.sigla']}" />
-				<p:inputText id="inputSigla" value="#{estadoBean.estado.sigla}" required="true" maxlength="2" />
+				<p:outputLabel value="#{msg['label.time.sigla']}" />
+				<p:inputText id="inputSigla" value="#{timeBean.time.estado}" required="true" maxlength="2" />
 				<p:message for="inputSigla" />
 				
 			</h:panelGrid>
 			
 			<br />
-			<p:commandButton value="#{msg['label.voltar']}" action="#{estadoBean.listar}" immediate="true" />
-			<p:commandButton value="#{msg['label.salvar']}" action="#{estadoBean.salvar}" update="gridEstado" />
+			<p:commandButton value="#{msg['label.voltar']}" action="#{timeBean.listar}" immediate="true" />
+			<p:commandButton value="#{msg['label.salvar']}" action="#{timeBean.salvar}" update="gridEstado" />
 		</h:form>
 			
 	</ui:define>

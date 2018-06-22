@@ -1,93 +1,50 @@
 package br.com.appmodelo.controller.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
-import org.springframework.core.env.Environment;
-
-import br.com.appmodelo.model.entity.Cliente;
-import br.com.appmodelo.model.service.ClienteService;
+import br.com.appmodelo.model.entity.Time;
 
 @ManagedBean
 @SessionScoped
 public class TimeBean {
 
-	@ManagedProperty("#{clienteService}")
-	private ClienteService clienteService;
+	private Time time;
+	private List<Time> times;
 
-	@ManagedProperty("#{environment}")
-	private Environment environment;
-
-	private Cliente cliente;
-
-	private List<Cliente> clientes;
-
-	public void setClienteService(ClienteService clienteService) {
-		this.clienteService = clienteService;
-	}
-
-	public void setEnvironment(Environment environment) {
-		this.environment = environment;
+	public TimeBean() {
+		times = new ArrayList<Time>();
+		Time t = new Time();
+		t.setEstado("ce");
+		t.setNome("Ceará");
+		times.add(t);
 	}
 
 	public String listar() {
-		clientes = clienteService.buscarTodos();
-		return "/cliente/clienteList";
+		return "/time/timeList";
 	}
 
-	public String prepararInserir() {
-		cliente = new Cliente();
-		return "/cliente/clienteForm";
+	public String slavar() {
+		return "/time/timeForm";
 	}
 
-	public String prepararEditar() {
-		cliente = clienteService.buscarPorId(cliente.getId());
-		return "/cliente/clienteForm";
+	public Time getTime() {
+		return time;
 	}
 
-	public String salvar() {
-		clienteService.salvar(cliente);
-		adicionarMenssagemSalvoSucesso();
-		return listar();
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
-	public String excluir() {
-		clienteService.excluir(cliente);
-		adicionarMenssagemExcluidoSalvoSucesso();
-		return listar();
+	public List<Time> getTimes() {
+		return times;
 	}
 
-	private void adicionarMenssagemSalvoSucesso() {
-		String mensagem = environment.getProperty("messagem.registro.salvo");
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(mensagem));
-	}
-
-	private void adicionarMenssagemExcluidoSalvoSucesso() {
-		String mensagem = environment.getProperty("messagem.registro.excluido");
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(mensagem));
-	}
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setTimes(List<Time> times) {
+		this.times = times;
 	}
 
 }

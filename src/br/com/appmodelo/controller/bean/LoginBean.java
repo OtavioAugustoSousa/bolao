@@ -41,7 +41,10 @@ public class LoginBean {
 		}
 
 	}
-
+	
+	public String cadastrar() {
+		return "/jogador/jogadorForm";
+	}
 	private void adicionarMenssagemLoginInvalido() {
 		String mensagem = environment.getProperty("messagem.usuario.invalido");
 		FacesContext context = FacesContext.getCurrentInstance();

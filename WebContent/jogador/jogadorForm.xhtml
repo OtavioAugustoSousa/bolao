@@ -4,44 +4,40 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
 <h:head>
 	<title><h:outputText value="#{msg['head.title']}" /></title>
 	<h:outputStylesheet name="style.css" />
 </h:head>
-
 <h:body>
 	<div class="ui-g">
 		<div class="ui-g-12">
 			<div class="center">
-				<p:graphicImage name="bolao_dos_amigos.png" width="20%" class="logo"/>
+				<p:graphicImage name="bolao_dos_amigos.png" width="20%" class="logo" />
 			</div>
 		</div>
 	</div>
 	<div class="ui-g">
 		<div class="form-card center">
 			<h3 class="title center">
-				<h:outputText value="#{msg['login.title']}" />
+				<h:outputText value="#{msg['label.cadastrar']}" />
 			</h3>
 			<h:form>
-				<p:growl id="growl" autoUpdate="true" sticky="true" />
-
-				<h:panelGrid columns="2">
+				<h:panelGrid id="gridEstado" columns="2">
 					<p:outputLabel value="#{msg['label.usuario']}" />
-					<p:inputText value="#{loginBean.login}" />
+					<p:inputText id="inputNome" value="#{jogadorBean.jogador.login}"
+						required="true" maxlength="60" />
 
 					<p:outputLabel value="#{msg['label.senha']}" />
-					<p:password value="#{loginBean.senha}" />
+					<p:password value="#{jogadorBean.jogador.senha}" />
+
 				</h:panelGrid>
-					<div class="button-group">
-					<p:commandButton value="#{msg['label.login']}"
-						action="#{loginBean.login}" styleClass="ui-priority-primary" />
-					
-					<p:commandButton value="#{msg['label.cadastrar']}"
-						action="#{loginBean.cadastrar}" />
-					
-					</div>
-					
+
+				<br />
+				<div class="button-group">
+					<p:commandButton value="#{msg['label.salvar']}"
+						action="#{jogadorBean.salvar}" styleClass="ui-priority-primary" />
+
+				</div>
 			</h:form>
 
 		</div>

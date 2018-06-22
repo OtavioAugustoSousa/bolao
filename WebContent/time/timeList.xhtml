@@ -14,44 +14,44 @@
     	</p:messages>
 	</ui:define>
 	
-	<ui:define name="title"><h:outputText value="#{msg['estado.list.title']}" /></ui:define>
+	<ui:define name="title"><h:outputText value="#{msg['time.list.title']}" /></ui:define>
 	
 	<ui:define name="content">
 		
 		<h:form prependId="false">
-			<p:dataTable id="dataTableEstado" var="estado" value="#{estadoBean.estados}">
+			<p:dataTable id="dataTableEstado" var="time" value="#{timeBean.times}">
 			 
-			    <p:column headerText="#{msg['label.estado.nome']}">
-			        <h:outputText value="#{estado.nome}" />
+			    <p:column headerText="#{msg['label.nome']}">
+			        <h:outputText value="#{time.nome}" />
 			    </p:column>
 			 
-			    <p:column headerText="#{msg['label.estado.sigla']}">
-			        <h:outputText value="#{estado.sigla}" />
+			    <p:column headerText="#{msg['label.nome']}">
+			        <h:outputText value="#{time.estado}" />
 			    </p:column>
 			    
 			    <p:column headerText="#{msg['label.editar']}" style="width: 50px;text-align: center;">
-			    	<p:commandButton icon="ui-icon-tag" action="#{estadoBean.prepararEditar}" >
-			        	<f:setPropertyActionListener value="#{estado}" target="#{estadoBean.estado}" />
+			    	<p:commandButton icon="ui-icon-tag" action="#{timeBean.prepararEditar}" >
+			        	<f:setPropertyActionListener value="#{time}" target="#{timeBean.time}" />
 			        </p:commandButton>
 			    </p:column>
 			    
 			    <div style="text-align: center;" />
 			    
-			  	<p:column headerText="#{msg['label.editar']}" style="width: 50px;text-align: center;">
+			  	<p:column headerText="#{msg['label.excluir']}" style="width: 50px;text-align: center;">
 			  		<p:commandButton icon="ui-icon-trash" onclick="PF('confirmarExclusao').show();" >
-			        	<f:setPropertyActionListener value="#{estado}" target="#{estadoBean.estado}" />
+			        	<f:setPropertyActionListener value="#{time}" target="#{timeBean.time}" />
 			  		</p:commandButton>
 			    </p:column>
 			</p:dataTable>	
 			
 			<br />
-			<p:commandButton value="#{msg['label.novo']}" action="#{estadoBean.prepararInserir}" />
+			<p:commandButton value="#{msg['label.novo']}" action="#{timeBean.prepararInserir}" />
 		</h:form>
 		
 		<p:dialog header="#{msg['header.confirma.exclusao']}" widgetVar="confirmarExclusao" showEffect="explode" hideEffect="explode" height="100">
 	    	<h:outputText value="#{msg['outputText.confirma.exclusao']}" /><br /><br />
 	    	<h:form>
-	    		<p:commandButton value="#{msg['label.sim']}" update="messages dataTableEstado" action="#{estadoBean.excluir}" onclick="PF('confirmarExclusao').hide();"/>
+	    		<p:commandButton value="#{msg['label.sim']}" update="messages dataTableEstado" action="#{timeBean.excluir}" onclick="PF('confirmarExclusao').hide();"/>
 	    		<p:commandButton value="#{msg['label.nao']}" onclick="PF('confirmarExclusao').hide();" />
 	    	</h:form>
 		</p:dialog>
